@@ -7,6 +7,50 @@
     <title>Clients</title>
 </head>
 <body>
-    
+    <header>
+        Clientes App
+    </header>
+    <section>
+        <form id="formCliente">
+            <label for="nombre">
+                Nombre:
+                <input type="text" id="nombre" name="nombre">
+            </label> 
+            <label for="apellido">
+                Apellido:
+                <input type="text" id="apellido" name="apellido">
+            </label>
+            <label for="dni">
+                DNI:
+                <input type="text" id="dni" name="dni">
+            </label>
+            <label for="balance">
+                Balance:
+                <input type="text" id="balance" name="balance">
+            </label>
+            <input type="submit" value="Guardar">
+        </form>
+    </section>
+    <section>
+        <header>
+            <h1>
+                Lista de Clientes
+            </h1>
+        </header>
+        <section>
+            <table id="tableClientes">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+    </section>
+    <script src="js/Cliente.js"></script>
+    <script src="js/App.js"></script>
 </body>
 </html>
