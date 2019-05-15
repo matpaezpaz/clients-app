@@ -31,27 +31,45 @@
                 Balance:
                 <input type="text" id="balance" name="balance">
             </label>
-            <input type="submit" value="Guardar">
+            <input type="submit" value="Guardar" class="btn-save">
         </form>
     </section>
-    <section class="table-section">
-        <header class="table-section__header">
-            <h1>
-                Lista de Clientes
-            </h1>
+
+    <section class="list-section">
+        <header>
+            <h1>Listado de Clientes</h1>
         </header>
-        <article class="table-section__article-table">
-            <table id="tableClientes">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>DNI</th>
-                        <th>Balance</th>
-                    </tr>
-                </thead>
-            </table>
+        <article class="list">
+            <header>
+                <h1>
+                    Lista de Clientes
+                </h1>
+            </header>
+            <ul id="listClientes">
+
+            </ul>
         </article>
+        <article class="table">
+            <header class="table__header">
+                <h1>
+                    Tabla de Clientes
+                </h1>
+            </header>
+            <article class="table__article-table">
+                <table id="tableClientes">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                </table>
+            </article>
+        </article>
+    </section>
+    <section class="table-section">
     </section>
     <script src="assets/js/Cliente.js"></script>
     <script src="assets/js/App.js"></script>

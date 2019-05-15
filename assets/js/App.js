@@ -8,12 +8,15 @@ const inputBalance = document.getElementById("balance");
 const tableClientes = document.getElementById("tableClientes");
 const tableClientesBody = document.createElement('tbody');
 
+const listClientes = document.getElementById("listClientes");
+
 var clientesInStorage = localStorage.getItem("clientes");
 clientesInStorage = clientesInStorage?clientesInStorage:"[]";
 
 const CLIENTES = JSON.parse(clientesInStorage).map( cliente => clienteInStorageToInstance(cliente) );
 tableClientes.appendChild(tableClientesBody);
 CLIENTES.forEach( cliente => tableClientesBody.appendChild(crearFila(cliente)) );
+CLIENTES.forEach( cliente => listClientes.appendChild(createElementWithTextContent('li',cliente.getNombreCompleto())) );
 
 
 formCliente.addEventListener('submit', function(event){
@@ -22,12 +25,53 @@ formCliente.addEventListener('submit', function(event){
     let apellido = inputApellido.value;
     let dni = inputDni.value;
     let balance  = inputBalance.value;
+
+    if (!noEstaVacio(nombre)) return;
+    if (!noEstaVacio(apellido)) return;
+    if (!esNumeroNatural(dni)) return;
+    if (!esFloat(balance)) return;
+
+    dni = parseInt(dni);
+    balance = parseFloat(balance);
     let nuevoCliente = new Cliente(nombre,apellido,dni,balance);
-    tableClientesBody.appendChild(crearFila(nuevoCliente));
-    CLIENTES.push(nuevoCliente);
-    localStorage.setItem("clientes",JSON.stringify(CLIENTES));
+    agregarElementoVisual(nuevoCliente);
+    guardarCliente(nuevoCliente);
     formCliente.reset();
 });
+
+function noEstaVacio( campo ) {
+    if (campo && campo.length > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function esNumeroNatural ( campo ) {
+    if ( noEstaVacio(campo) ) {
+        let regex = /^\d+$/g;
+        return regex.test(campo);
+    }
+    return false;
+}
+function esFloat ( campo ) {
+    if ( noEstaVacio(campo) ) {
+        let regex = /^\d*(\.|\,)?\d*$/g;
+        return regex.test(campo);
+    }
+    return false;
+}
+
+
+function agregarElementoVisual(nuevoCliente) {
+    tableClientesBody.appendChild(crearFila(nuevoCliente));
+    listClientes.appendChild(createElementWithTextContent('li',nuevoCliente.getNombreCompleto()));
+}
+
+function guardarCliente(nuevoCliente) {
+    CLIENTES.push(nuevoCliente);
+    localStorage.setItem("clientes",JSON.stringify(CLIENTES));
+}
 
 function crearFila(cliente){
     const CELDA = 'td';
