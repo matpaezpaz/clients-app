@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+}
+
+.main-header {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+.form-section {
+  margin: 0 3rem;
+  display: flex;
+  justify-content: center;
+}
+.form-section__form-cliente {
+  display: flex;
+  flex-direction: column;
+}
+.form-section__form-cliente label {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+.form-section__form-cliente label input {
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+
+.table-section {
+  margin-top: 1.5rem;
+}
+.table-section__header {
+  background-color: grey;
+  padding: 0.5rem;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.table-section__article-table {
+  display: flex;
+  flex-basis: 80%;
+  justify-content: center;
+}
+.table-section__article-table table {
+  border-spacing: 0;
+  width: 80%;
+}
+.table-section__article-table table thead th {
+  font-size: 1.2rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border-bottom: 2px black solid;
+  margin: 0px;
+}
+.table-section__article-table table tbody tr {
+  transition: 0.1s;
+}
+.table-section__article-table table tbody tr td {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding: 0.3rem;
+  border-bottom: 1px black solid;
+}
+.table-section__article-table table tbody tr:hover {
+  background-color: #00000022;
+}
+
+/*# sourceMappingURL=style.css.map */

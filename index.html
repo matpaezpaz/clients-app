@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clients</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        Clientes App
+    <header class="main-header">
+        <h1>
+            Clientes App
+        </h1>
     </header>
-    <section>
-        <form id="formCliente">
+    <section class="form-section">
+        <form id="formCliente" class="form-section__form-cliente">
             <label for="nombre">
                 Nombre:
                 <input type="text" id="nombre" name="nombre">
@@ -31,13 +34,13 @@
             <input type="submit" value="Guardar">
         </form>
     </section>
-    <section>
-        <header>
+    <section class="table-section">
+        <header class="table-section__header">
             <h1>
                 Lista de Clientes
             </h1>
         </header>
-        <section>
+        <article class="table-section__article-table">
             <table id="tableClientes">
                 <thead>
                     <tr>
@@ -48,7 +51,7 @@
                     </tr>
                 </thead>
             </table>
-        </section>
+        </article>
     </section>
     <script src="assets/js/Cliente.js"></script>
     <script src="assets/js/App.js"></script>

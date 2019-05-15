@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0px;
+}
+.main-header {
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 1.5rem;
+}
+.form-section{
+    margin: 0 3rem;
+    display: flex;
+    justify-content: center;
+    &__form-cliente{
+        display: flex;
+        flex-direction: column;
+        label {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            justify-content: center;
+            margin-bottom: .3rem;
+            input {
+                border-radius: 5px;
+                border-style: solid;
+                border-width: 1px;
+                border-color: grey;
+            }
+        }
+    }
+}
+.table-section {
+    margin-top: 1.5rem;
+    &__header{
+        background-color: grey;
+        padding: .5rem;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    &__article-table{
+        display: flex;
+        flex-basis: 80%;
+        justify-content: center;
+        table{
+            border-spacing: 0;
+            width: 80%;
+            thead{
+                th {
+                    font-size: 1.2rem;
+                    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    border-bottom: 2px black solid;
+                    margin: 0px;
+                }
+            }
+            tbody{
+                tr{
+                    transition: .1s;
+                    td{
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        padding: .3rem;
+                        border-bottom: 1px black solid;
+                    }
+                }
+                tr:hover {
+                    background-color: #00000022;
+                }
+            }
+        }
+    }
+}
