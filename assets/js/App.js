@@ -27,17 +27,17 @@ inputNombre.addEventListener('error', handleChangeText);
 inputs.forEach ( input => input.addEventListener( 'keyup' , validityClasses ) );
 function validityClasses(){
     if ( this.checkValidity() ) {
-        this.classList.remove('text-error');
+        this.classList.remove('texto-error');
     } else {
-        this.classList.add('text-error');
+        this.classList.add('texto-error');
     }
 }
 
 function handleChangeText(event) {
     if ( !noEstaVacio(this.value) ) {
-        this.classList.add('text-error');
+        this.classList.add('texto-error');
     } else {
-        this.classList.remove('text-error');
+        this.classList.remove('texto-error');
     }
 }
 
@@ -48,22 +48,22 @@ function handleSubmit(event){
     let dni = inputDni.value;
     let balance  = inputBalance.value;
     
-    inputs.forEach ( input => input.classList.remove("text-error") );
+    inputs.forEach ( input => input.classList.remove("texto-error") );
     let errorFlag = false;
     if (!noEstaVacio(nombre)) {
-        inputNombre.className = "text-error";
+        inputNombre.classList.add("texto-error");
         errorFlag = true;
     };
     if (!noEstaVacio(apellido)) {
-        inputApellido.className = "text-error";
+        inputApellido.classList.add("texto-error");
         errorFlag = true;
     }
     if (!esNumeroNatural(dni)) {
-        inputDni.className = "text-error";
+        inputDni.classList.add("texto-error");
         errorFlag = true;
     }
     if (!esFloat(balance)) {
-        inputBalance.className = "text-error";
+        inputBalance.classList.add("texto-error");
         errorFlag = true;
     }
     if( errorFlag ) return;
@@ -113,10 +113,15 @@ function crearFila(cliente){
     let celdaBalance = createElementWithTextContent(CELDA,cliente.getBalance());
 
     if ( cliente.getBalance() > 0 ) {
-        celdaBalance.classList.add('positive-balance');
+        celdaBalance.classList.add('balance-positivo');
     } else {
-        celdaBalance.classList.add('negative-balance');
+        celdaBalance.classList.add('balance-negativo');
     }
+
+    celdaNombre.classList.add('texto-centro');
+    celdaApellido.classList.add('texto-centro');
+    celdaDNI.classList.add('texto-centro');
+    celdaBalance.classList.add('texto-derecha');
 
     fila.appendChild(celdaNombre);
     fila.appendChild(celdaApellido);
