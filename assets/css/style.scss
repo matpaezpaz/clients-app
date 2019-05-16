@@ -31,6 +31,9 @@ body {
                 border-width: 1px;
                 border-color: grey;
             }
+            input.text-error{
+                border-color: red;
+            }
         }
     }
 }
@@ -113,4 +116,10 @@ $btn-save-color: #00bfff;
 .btn-save:hover {
     background-color: darken($color: $btn-save-color, $amount: 6);
     border-color: darken($color: $btn-save-color, $amount: 4);
+}
+.positive-balance{
+    color: green;
+}
+.negative-balance {
+    color:red;
 }

@@ -12,24 +12,53 @@ const listClientes = document.getElementById("listClientes");
 
 var clientesInStorage = localStorage.getItem("clientes");
 clientesInStorage = clientesInStorage?clientesInStorage:"[]";
-
 const CLIENTES = JSON.parse(clientesInStorage).map( cliente => clienteInStorageToInstance(cliente) );
-tableClientes.appendChild(tableClientesBody);
-CLIENTES.forEach( cliente => tableClientesBody.appendChild(crearFila(cliente)) );
-CLIENTES.forEach( cliente => listClientes.appendChild(createElementWithTextContent('li',cliente.getNombreCompleto())) );
+function cargarClientes() {
+    tableClientes.appendChild(tableClientesBody);
+    CLIENTES.forEach( cliente => tableClientesBody.appendChild(crearFila(cliente)) );
+    CLIENTES.forEach( cliente => listClientes.appendChild(createElementWithTextContent('li',cliente.getNombreCompleto())) );
+}
+cargarClientes();
 
+formCliente.addEventListener('submit', handleSubmit);
 
-formCliente.addEventListener('submit', function(event){
+inputNombre.addEventListener('keydown', handleChangeText);
+inputNombre.addEventListener('error', handleChangeText);
+
+function handleChangeText(event) {
+    if ( !noEstaVacio(this.value) ) {
+        this.classList.add('text-error');
+    } else {
+        this.classList.remove('text-error');
+    }
+}
+
+function handleSubmit(event){
     event.preventDefault();
     let nombre = inputNombre.value;
     let apellido = inputApellido.value;
     let dni = inputDni.value;
     let balance  = inputBalance.value;
-
-    if (!noEstaVacio(nombre)) return;
-    if (!noEstaVacio(apellido)) return;
-    if (!esNumeroNatural(dni)) return;
-    if (!esFloat(balance)) return;
+    let inputs = [inputNombre,inputApellido,inputDni,inputBalance];
+    inputs.forEach ( input => input.classList.remove("text-error") );
+    let errorFlag = false;
+    if (!noEstaVacio(nombre)) {
+        inputNombre.className = "text-error";
+        errorFlag = true;
+    };
+    if (!noEstaVacio(apellido)) {
+        inputApellido.className = "text-error";
+        errorFlag = true;
+    }
+    if (!esNumeroNatural(dni)) {
+        inputDni.className = "text-error";
+        errorFlag = true;
+    }
+    if (!esFloat(balance)) {
+        inputBalance.className = "text-error";
+        errorFlag = true;
+    }
+    if( errorFlag ) return;
 
     dni = parseInt(dni);
     balance = parseFloat(balance);
@@ -37,7 +66,7 @@ formCliente.addEventListener('submit', function(event){
     agregarElementoVisual(nuevoCliente);
     guardarCliente(nuevoCliente);
     formCliente.reset();
-});
+}
 
 function noEstaVacio( campo ) {
     if (campo && campo.length > 0) {
@@ -56,7 +85,7 @@ function esNumeroNatural ( campo ) {
 }
 function esFloat ( campo ) {
     if ( noEstaVacio(campo) ) {
-        let regex = /^\d*(\.|\,)?\d*$/g;
+        let regex = /^\-?\d*(\.|\,)?\d*$/g;
         return regex.test(campo);
     }
     return false;
@@ -80,6 +109,13 @@ function crearFila(cliente){
     let celdaApellido = createElementWithTextContent(CELDA,cliente.getApellido());
     let celdaDNI = createElementWithTextContent(CELDA,cliente.getDNI());
     let celdaBalance = createElementWithTextContent(CELDA,cliente.getBalance());
+
+    if ( cliente.getBalance() > 0 ) {
+        celdaBalance.classList.add('positive-balance');
+    } else {
+        celdaBalance.classList.add('negative-balance');
+    }
+
     fila.appendChild(celdaNombre);
     fila.appendChild(celdaApellido);
     fila.appendChild(celdaDNI);
@@ -93,10 +129,7 @@ function createElementWithTextContent(element, textContent) {
     return newDOMelement;
 }
 function clienteInStorageToInstance ( object ) {
-    let nombre = object._nombre;
-    let apellido = object._apellido;
-    let dni = object._dni;
-    let balance  = object._balance;
+    let {_nombre:nombre,_apellido:apellido,_dni:dni,_balance:balance} = object;
     let cliente = new Cliente(nombre,apellido,dni,balance);
     return cliente;
 }

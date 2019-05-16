@@ -37,6 +37,9 @@ body {
   border-width: 1px;
   border-color: grey;
 }
+.form-section__form-cliente label input.text-error {
+  border-color: red;
+}
 
 .list-section {
   margin-top: 2rem;
@@ -121,6 +124,14 @@ body {
 .btn-save:hover {
   background-color: #00a8e0;
   border-color: #00b0eb;
+}
+
+.positive-balance {
+  color: green;
+}
+
+.negative-balance {
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
