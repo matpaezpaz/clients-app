@@ -10,9 +10,9 @@ const tableClientesBody = document.createElement('tbody');
 
 const listClientes = document.getElementById("listClientes");
 
-var clientesInStorage = localStorage.getItem("clientes");
-clientesInStorage = clientesInStorage?clientesInStorage:"[]";
-const CLIENTES = JSON.parse(clientesInStorage).map( cliente => clienteInStorageToInstance(cliente) );
+const persistencia = new Persistencia("clientes");
+
+const CLIENTES = persistencia.obtenerClientes();
 function cargarClientes() {
     tableClientes.appendChild(tableClientesBody);
     CLIENTES.forEach( cliente => tableClientesBody.appendChild(crearFila(cliente)) );
@@ -64,7 +64,7 @@ function handleSubmit(event){
     balance = parseFloat(balance);
     let nuevoCliente = new Cliente(nombre,apellido,dni,balance);
     agregarElementoVisual(nuevoCliente);
-    guardarCliente(nuevoCliente);
+    persistencia.guardarCliente(nuevoCliente);
     formCliente.reset();
 }
 
@@ -96,12 +96,6 @@ function agregarElementoVisual(nuevoCliente) {
     tableClientesBody.appendChild(crearFila(nuevoCliente));
     listClientes.appendChild(createElementWithTextContent('li',nuevoCliente.getNombreCompleto()));
 }
-
-function guardarCliente(nuevoCliente) {
-    CLIENTES.push(nuevoCliente);
-    localStorage.setItem("clientes",JSON.stringify(CLIENTES));
-}
-
 function crearFila(cliente){
     const CELDA = 'td';
     let fila = document.createElement('tr');
@@ -127,9 +121,4 @@ function createElementWithTextContent(element, textContent) {
     let newContent = document.createTextNode(textContent);
     newDOMelement.appendChild(newContent);
     return newDOMelement;
-}
-function clienteInStorageToInstance ( object ) {
-    let {_nombre:nombre,_apellido:apellido,_dni:dni,_balance:balance} = object;
-    let cliente = new Cliente(nombre,apellido,dni,balance);
-    return cliente;
 }
