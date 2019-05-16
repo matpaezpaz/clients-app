@@ -4,7 +4,7 @@ const inputNombre = document.getElementById("nombre");
 const inputApellido = document.getElementById("apellido");
 const inputDni = document.getElementById("dni");
 const inputBalance = document.getElementById("balance");
-
+const inputs = [inputNombre,inputApellido,inputDni,inputBalance];
 const tableClientes = document.getElementById("tableClientes");
 const tableClientesBody = document.createElement('tbody');
 
@@ -24,6 +24,14 @@ formCliente.addEventListener('submit', handleSubmit);
 
 inputNombre.addEventListener('keydown', handleChangeText);
 inputNombre.addEventListener('error', handleChangeText);
+inputs.forEach ( input => input.addEventListener( 'keyup' , validityClasses ) );
+function validityClasses(){
+    if ( this.checkValidity() ) {
+        this.classList.remove('text-error');
+    } else {
+        this.classList.add('text-error');
+    }
+}
 
 function handleChangeText(event) {
     if ( !noEstaVacio(this.value) ) {
@@ -39,7 +47,7 @@ function handleSubmit(event){
     let apellido = inputApellido.value;
     let dni = inputDni.value;
     let balance  = inputBalance.value;
-    let inputs = [inputNombre,inputApellido,inputDni,inputBalance];
+    
     inputs.forEach ( input => input.classList.remove("text-error") );
     let errorFlag = false;
     if (!noEstaVacio(nombre)) {
